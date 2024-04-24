@@ -1,0 +1,13 @@
+
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000400012e000010000000100000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000401012e000010000000100000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000403012e000010000000100000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f0004320117000000001000000010}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f00043b0115000000001000000010}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f00043c0114000000001000000010}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f00043d013c000000001000000010}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000460013c000100000001000000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f0004610139000100000001000000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000462013a000100000001000000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f000463013b000100000001000000}, notifying = YES>
+<CBCharacteristic: 0x3006ed920, UUID = 00001624-1212-EFDE-1623-785FEABCD123, properties = 0x1E, value = {length = 15, bytes = 0x0f0004640136000100000001000000}, notifying = YES>
