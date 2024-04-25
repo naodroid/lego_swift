@@ -10,6 +10,7 @@ import Foundation
 class BytesReader {
     var pos: Int = 0
     let bytes: [UInt8]
+    var remainCount: Int { bytes.count - pos }
     
     init(bytes: [UInt8]) {
         self.bytes = bytes
@@ -23,11 +24,18 @@ class BytesReader {
         let b1 = UInt16(bytes[pos] & 0xFF)
         let b2 = UInt16(bytes[pos + 1] & 0xFF)
         pos += 2
-        return (b1 << 16) | b2
+        return (b2 << 8) | b1
+    }
+    func readInt32() -> Int32 {
+        let b1 = Int32(bytes[pos] & 0xFF)
+        let b2 = Int32(bytes[pos + 1] & 0xFF)
+        let b3 = Int32(bytes[pos + 2] & 0xFF)
+        let b4 = Int32(bytes[pos + 3] & 0xFF)
+        return (b4 << 24) | (b3 << 16) | (b2 << 8) | b1
     }
     func readPort() -> Port {
-        let r = readUInt8()
-        return Port(rawValue: r)!
+        let id = readUInt8()
+        return Port(id: id)
     }
     func readLength() -> Int {
         let r = readUInt8()

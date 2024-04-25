@@ -20,7 +20,7 @@ protocol OutputMessage: Message {
     func toBytes() -> [UInt8]
 }
 protocol InputMessage: Message {
-    static func fromBytes(_ bytes: [UInt8]) -> Self
+    static func create(with reader: BytesReader) -> Self?
 }
 
 

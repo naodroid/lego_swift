@@ -21,9 +21,10 @@ enum PortInformationMode: UInt8 {
 
 
 struct PortInformationMessage: InputMessage {
+    
     let messageType: MessageType = .portInformation
     
-    static func fromBytes(_ bytes: [UInt8]) -> PortInformationMessage {
-        return PortInformationMessage()
+    static func create(with reader: BytesReader) -> PortInformationMessage? {
+        return nil
     }
 }

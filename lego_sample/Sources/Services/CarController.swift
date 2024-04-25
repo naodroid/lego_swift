@@ -47,6 +47,7 @@ class CarController: NSObject {
     public private(set) var deviceStatus: DeviceStatus = .disconnected
     @ObservationIgnored private var stateObserver: NSKeyValueObservation?
     @ObservationIgnored private var characteristic: CBCharacteristic?
+    @ObservationIgnored private var attachedDevices: [Port: HubAttachedIO] = [:]
     
     // MARk: initializer
     init(target: CBPeripheral, centralController: CentralController) {
@@ -104,15 +105,7 @@ class CarController: NSObject {
         for d in data {
             out += String(format: "%2x, ", d)
         }
-        print("[\(out)]")
-        
-//        Task {
-//            do {
         target.writeValue(data, for: ch, type: requireResponse ? .withResponse : .withoutResponse)
-//            } catch {
-//                print("Failed to send")
-//            }
-//        }
     }
     func setupFormat() {
         let format = PortInformationFormatSetup(port: Port.a,
@@ -163,10 +156,65 @@ extension CarController: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral,
                     didUpdateValueFor characteristic: CBCharacteristic,
                     error: Error?) {
-        print("UPDATE!!----------------")
-        print(characteristic)
-        print("UPDATEEND!!----------------")
+        guard let data = characteristic.value else {
+            return
+        }
+        if let msg = Decoder.decode(data) {
+            switch msg.messageType {
+            case .hubProperties:
+                break
+            case .hubActions:
+                break
+            case .hubAlerts:
+                break
+            case .hubAttachedIO:
+                onHubAttachedIOReceived(msg)
+            case .genericErrorMessages:
+                break
+            case .hwNetWorkCommands:
+                break
+            case .fwUpdateGoIntoBooMode:
+                break
+            case .fwUpdateLockMemory:
+                break
+            case .fwUpdateLockStatusRequest:
+                break
+            case .fwLockStatus:
+                break
+            case .portInformationRequest:
+                break
+            case .portModeInformationRequest:
+                break
+            case .portInputFormatSetupSingle:
+                break
+            case .portInputFormatSetupCombinedMode:
+                break
+            case .portInformation:
+                break
+            case .portModeInformation:
+                break
+            case .portValueSingle:
+                break
+            case .portValueCombinedMode:
+                break
+            case .portInputFormatSingle:
+                break
+            case .portInputFormatCombinedMode:
+                break
+            case .virtualPortSetup:
+                break
+            case .portOutputCommand:
+                break
+            case .portOutputCommandFeedback:
+                break
+            }
+        } else {
+            print("FAILED TO PARSE:\(data)")
+        }
     }
+    
+    
+    
     func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
         print("READY!")
     }
@@ -186,5 +234,18 @@ extension CarController: CBPeripheralDelegate {
             return
         }
         self.onFoundCharacteristic(service: service, characteristic: characteristic)
+    }
+}
+extension CarController {
+    private func onHubAttachedIOReceived(_ msg: Message) {
+        guard let msg = msg as? HubAttachedIO else {
+            return
+        }
+        switch msg.event {
+        case .detachedIO:
+            attachedDevices[msg.port] = nil
+        case .attachedIO, .attachedVirtualIO:
+            attachedDevices[msg.port] = msg
+        }
     }
 }

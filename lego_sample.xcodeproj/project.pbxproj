@@ -26,6 +26,9 @@
 		3531B0E62BD87059003FFBB4 /* BytesWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531B0E52BD87059003FFBB4 /* BytesWriter.swift */; };
 		3531B0E82BD93DF2003FFBB4 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3531B0E72BD93DF2003FFBB4 /* test.txt */; };
 		3531B0EA2BD9413C003FFBB4 /* MotorPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531B0E92BD9413C003FFBB4 /* MotorPower.swift */; };
+		3531B0EC2BDA8763003FFBB4 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531B0EB2BDA8763003FFBB4 /* Decoder.swift */; };
+		3531B0EE2BDA8817003FFBB4 /* HubPropertyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531B0ED2BDA8817003FFBB4 /* HubPropertyMessage.swift */; };
+		3531B0F02BDA88F0003FFBB4 /* HubAttachedIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531B0EF2BDA88F0003FFBB4 /* HubAttachedIO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		3531B0E52BD87059003FFBB4 /* BytesWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesWriter.swift; sourceTree = "<group>"; };
 		3531B0E72BD93DF2003FFBB4 /* test.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		3531B0E92BD9413C003FFBB4 /* MotorPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorPower.swift; sourceTree = "<group>"; };
+		3531B0EB2BDA8763003FFBB4 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		3531B0ED2BDA8817003FFBB4 /* HubPropertyMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubPropertyMessage.swift; sourceTree = "<group>"; };
+		3531B0EF2BDA88F0003FFBB4 /* HubAttachedIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubAttachedIO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +147,10 @@
 		3531B0D72BD86F99003FFBB4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				3531B0DF2BD86FA3003FFBB4 /* Encoder.swift */,
 				3531B0D82BD86F99003FFBB4 /* BytesReader.swift */,
 				3531B0E52BD87059003FFBB4 /* BytesWriter.swift */,
+				3531B0EB2BDA8763003FFBB4 /* Decoder.swift */,
+				3531B0DF2BD86FA3003FFBB4 /* Encoder.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -156,6 +163,8 @@
 				3531B0DD2BD86FA2003FFBB4 /* PortInformationMessage.swift */,
 				3531B0DC2BD86FA2003FFBB4 /* PortOutputCommand.swift */,
 				3531B0E92BD9413C003FFBB4 /* MotorPower.swift */,
+				3531B0ED2BDA8817003FFBB4 /* HubPropertyMessage.swift */,
+				3531B0EF2BDA88F0003FFBB4 /* HubAttachedIO.swift */,
 			);
 			path = messages;
 			sourceTree = "<group>";
@@ -231,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3531B0F02BDA88F0003FFBB4 /* HubAttachedIO.swift in Sources */,
+				3531B0EC2BDA8763003FFBB4 /* Decoder.swift in Sources */,
 				3531B0D42BD4F929003FFBB4 /* ControllerView.swift in Sources */,
 				3531B0E12BD86FA3003FFBB4 /* PortOutputCommand.swift in Sources */,
 				3531B0E42BD86FA3003FFBB4 /* Encoder.swift in Sources */,
@@ -238,6 +249,7 @@
 				3531B0E32BD86FA3003FFBB4 /* Port.swift in Sources */,
 				3531B0E22BD86FA3003FFBB4 /* PortInformationMessage.swift in Sources */,
 				3531B0BC2BD4EE14003FFBB4 /* ContentView.swift in Sources */,
+				3531B0EE2BDA8817003FFBB4 /* HubPropertyMessage.swift in Sources */,
 				3531B0CD2BD4EEB7003FFBB4 /* CentralController.swift in Sources */,
 				3531B0D02BD4EFE0003FFBB4 /* ScanView.swift in Sources */,
 				3531B0EA2BD9413C003FFBB4 /* MotorPower.swift in Sources */,

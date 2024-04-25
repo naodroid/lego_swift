@@ -13,7 +13,7 @@ class BytesWriter {
     }
     
     func writePort(_ v: Port) {
-        writeUInt8(v.rawValue)
+        writeUInt8(v.id)
     }
     
     func writeBool(_ v: Bool) {

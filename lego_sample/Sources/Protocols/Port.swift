@@ -7,9 +7,17 @@
 
 import Foundation
 
-enum Port: UInt8 {
-    case a = 0
-    case b = 1
-    case c = 2
-    case d = 3
+struct Port: Equatable, Hashable {
+    let id: UInt8
+    var isHubConnector: Bool {
+        id >= 0 && id <= 49
+    }
+    var isInternal: Bool {
+        id >= 50 && id <= 100
+    }
+    
+    static let a = Port(id: 0)
+    static let b = Port(id: 1)
+    static let c = Port(id: 2)
+    static let d = Port(id: 3)
 }
