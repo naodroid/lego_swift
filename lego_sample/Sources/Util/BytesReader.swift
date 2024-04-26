@@ -15,10 +15,17 @@ class BytesReader {
     init(bytes: [UInt8]) {
         self.bytes = bytes
     }
+    func readBool() -> Bool {
+        return readUInt8() > 0
+    }
     func readUInt8() -> UInt8 {
         let r = bytes[pos]
         pos += 1
         return r
+    }
+    func readInt8() -> Int8 {
+        let r = readUInt8()
+        return Int8(bitPattern: r)
     }
     func readUInt16() -> UInt16 {
         let b1 = UInt16(bytes[pos] & 0xFF)
@@ -45,4 +52,19 @@ class BytesReader {
         }
         return Int(r)
     }
+    func readBytes(length: Int) -> [UInt8] {
+        let data = Array(bytes[pos..<(pos+length)])
+        pos += length
+        return data
+    }
+    func remainBytes() -> [UInt8] {
+        let data = bytes[pos...]
+        pos = bytes.count
+        return Array(data)
+    }
+    func remainBytesAsData() -> Data {
+        let data = remainBytes()
+        return Data(data)
+    }
+    
 }

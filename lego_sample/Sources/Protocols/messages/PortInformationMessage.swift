@@ -24,7 +24,7 @@ struct PortInformationMessage: InputMessage {
     
     let messageType: MessageType = .portInformation
     
-    static func create(with reader: BytesReader) -> PortInformationMessage? {
+    static func create(reader: BytesReader) -> PortInformationMessage? {
         return nil
     }
 }

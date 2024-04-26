@@ -34,8 +34,7 @@ struct PortOutputCommand: OutputMessage {
     let subCommand: SubCommand
     let startUpAndCompletionInfo: StartUpAndCompletionInfo
     
-    public func toBytes() -> [UInt8] {
-        return []
+    func write(writer: BytesWriter) {
     }
 }
 protocol SubCommand {

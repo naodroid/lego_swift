@@ -101,10 +101,6 @@ class CarController: NSObject {
             return
         }
         let data = Encoder.encode(message: message)
-        var out = ""
-        for d in data {
-            out += String(format: "%2x, ", d)
-        }
         target.writeValue(data, for: ch, type: requireResponse ? .withResponse : .withoutResponse)
     }
     func setupFormat() {

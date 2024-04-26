@@ -111,8 +111,8 @@
 				3531B0C92BD4EE38003FFBB4 /* Protocols */,
 				3531B0C82BD4EE31003FFBB4 /* Services */,
 				3531B0CE2BD4EFD5003FFBB4 /* Views */,
-				3531B0B92BD4EE14003FFBB4 /* App.swift */,
 				3531B0D72BD86F99003FFBB4 /* Util */,
+				3531B0B92BD4EE14003FFBB4 /* App.swift */,
 				3531B0BB2BD4EE14003FFBB4 /* ContentView.swift */,
 			);
 			path = Sources;

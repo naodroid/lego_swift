@@ -36,7 +36,7 @@ class Decoder {
         case .hubAlerts:
             return nil
         case .hubAttachedIO:
-            return HubAttachedIO.create(with: reader)
+            return HubAttachedIO.create(reader: reader)
         case .genericErrorMessages:
             return nil
         case .hwNetWorkCommands:

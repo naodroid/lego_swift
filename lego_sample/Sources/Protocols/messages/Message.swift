@@ -12,15 +12,18 @@ protocol Message {
     var messageType: MessageType { get }
 }
 extension Message {
-    // hub ID must be zero
+    /// hub ID maybe zero
     var hubId: UInt8 { 0 }
 }
 
 protocol OutputMessage: Message {
-    func toBytes() -> [UInt8]
+    /// write bytes to the writer, without CommonHeader
+    func write(writer: BytesWriter)
 }
 protocol InputMessage: Message {
-    static func create(with reader: BytesReader) -> Self?
+    /// create message from reader.
+    /// Notice: commonHeader is already read
+    static func create(reader: BytesReader) -> Self?
 }
 
 

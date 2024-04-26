@@ -65,7 +65,7 @@ struct HubAttachedIO: InputMessage {
     let portA: Port? //only virtual
     let portB: Port? //only virtual
     
-    static func create(with reader: BytesReader) -> HubAttachedIO? {
+    static func create(reader: BytesReader) -> HubAttachedIO? {
         let port = reader.readPort()
         guard let event = AttachedEvent(rawValue: reader.readUInt8()) else {
             return nil

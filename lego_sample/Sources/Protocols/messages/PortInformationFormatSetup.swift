@@ -14,12 +14,10 @@ struct PortInformationFormatSetup: OutputMessage {
     let deltaInterval: UInt32
     let enabled: Bool
     
-    public func toBytes() -> [UInt8] {
-        let wr = BytesWriter()
-        wr.writePort(port)
-        wr.writeUInt8(mode)
-        wr.writeUInt32(deltaInterval)
-        wr.writeBool(enabled)
-        return wr.output
+    func write(writer: BytesWriter) {
+        writer.writePort(port)
+        writer.writeUInt8(mode)
+        writer.writeUInt32(deltaInterval)
+        writer.writeBool(enabled)
     }
 }

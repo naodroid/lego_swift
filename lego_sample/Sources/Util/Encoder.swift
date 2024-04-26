@@ -9,12 +9,14 @@ import Foundation
 
 final class Encoder {
     static func encode(message: OutputMessage) -> Data {
-        let data = message.toBytes()
-        let len = data.count + 3
-        //FIXME: support 2bytes data len
-        let header: [UInt8] = [UInt8(len), message.hubId, message.messageType.rawValue]
-        let out = header + data
-        return Data(out)
+        let writer = BytesWriter()
+        writer.writeUInt8(0) //length, rewrite after message encoding
+        writer.writeUInt8(message.hubId) //supposed to be zero
+        writer.writeUInt8(message.messageType.rawValue)
+        message.write(writer: writer)
+        var data = writer.output
+        data[0] = UInt8(data.count)
+        return Data(data)
     }
 }
 

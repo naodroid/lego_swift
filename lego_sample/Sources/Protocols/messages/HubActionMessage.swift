@@ -15,7 +15,7 @@ enum HubActionType: UInt8 {
     case vccPortControlOff = 0x04
     case activateBusyIndication = 0x05
     case resetBusyIndication = 0x06
-    case shutdown = 0X2F  //Suggested for PRODUCTION USE ONLY!
+    case shutdown = 0x2F  //Suggested for PRODUCTION USE ONLY!
     
     //upstream
     case hubWillSwitchOff = 0x30
@@ -27,12 +27,10 @@ struct HubActionMessage: OutputMessage, InputMessage {
     let messageType = MessageType.hubActions
     let actionType: HubActionType
     
-    func toBytes() -> [UInt8] {
-        let wr = BytesWriter()
-        wr.writeUInt8(actionType.rawValue)
-        return wr.output
+    func write(writer: BytesWriter) {
+        writer.writeUInt8(actionType.rawValue)
     }
-    static func create(with reader: BytesReader) -> HubActionMessage? {
+    static func create(reader: BytesReader) -> HubActionMessage? {
         let value = reader.readUInt8()
         guard let type = HubActionType(rawValue: value) else {
             return nil

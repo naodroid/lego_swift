@@ -12,13 +12,11 @@ struct MotorPower: OutputMessage {
     let port: Port
     let messageType: MessageType = MessageType.portOutputCommand
     
-    func toBytes() -> [UInt8] {
-        let wr = BytesWriter()
-        wr.writePort(port)
-        wr.writeUInt8(0x11)
-        wr.writeUInt8(0x51) //direct buffer
-        wr.writeUInt8(0x00)
-        wr.writeInt8(power)      
-        return wr.output
+    func write(writer: BytesWriter) {
+        writer.writePort(port)
+        writer.writeUInt8(0x11)
+        writer.writeUInt8(0x51) //direct buffer
+        writer.writeUInt8(0x00)
+        writer.writeInt8(power)
     }
 }
