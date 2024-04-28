@@ -36,6 +36,7 @@
 		3548481F2BDED74600AFF857 /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548481E2BDED74600AFF857 /* MathUtil.swift */; };
 		354848212BDED81400AFF857 /* EndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848202BDED81400AFF857 /* EndState.swift */; };
 		354848232BDEDE9500AFF857 /* PortOutputCommandFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */; };
+		354848252BDF022D00AFF857 /* HubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848242BDF022D00AFF857 /* HubController.swift */; };
 		359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BFEE12BDB239C0000C836 /* HubActionMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		3548481E2BDED74600AFF857 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
 		354848202BDED81400AFF857 /* EndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndState.swift; sourceTree = "<group>"; };
 		354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortOutputCommandFeedback.swift; sourceTree = "<group>"; };
+		354848242BDF022D00AFF857 /* HubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubController.swift; sourceTree = "<group>"; };
 		359BFEE12BDB239C0000C836 /* HubActionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubActionMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			children = (
 				3531B0CC2BD4EEB7003FFBB4 /* CentralController.swift */,
 				3531B0D12BD4F91C003FFBB4 /* CarController.swift */,
+				354848242BDF022D00AFF857 /* HubController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				3531B0EA2BD9413C003FFBB4 /* MotorPower.swift in Sources */,
 				3531B0CB2BD4EE4B003FFBB4 /* Gatt.swift in Sources */,
 				3531B0E62BD87059003FFBB4 /* BytesWriter.swift in Sources */,
+				354848252BDF022D00AFF857 /* HubController.swift in Sources */,
 				3531B0D22BD4F91C003FFBB4 /* CarController.swift in Sources */,
 				3531B0E02BD86FA3003FFBB4 /* Message.swift in Sources */,
 				353F13822BDE59D600D4847C /* PortInputFormatSingle.swift in Sources */,
