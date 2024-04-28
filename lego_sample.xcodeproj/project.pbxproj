@@ -32,6 +32,10 @@
 		353F13822BDE59D600D4847C /* PortInputFormatSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F13812BDE59D600D4847C /* PortInputFormatSingle.swift */; };
 		353F13842BDE5A8900D4847C /* PortValueSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353F13832BDE5A8900D4847C /* PortValueSingle.swift */; };
 		3548481B2BDEC1B200AFF857 /* SensorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548481A2BDEC1B200AFF857 /* SensorMode.swift */; };
+		3548481D2BDED28500AFF857 /* MotorAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548481C2BDED28500AFF857 /* MotorAngle.swift */; };
+		3548481F2BDED74600AFF857 /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548481E2BDED74600AFF857 /* MathUtil.swift */; };
+		354848212BDED81400AFF857 /* EndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848202BDED81400AFF857 /* EndState.swift */; };
+		354848232BDEDE9500AFF857 /* PortOutputCommandFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */; };
 		359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BFEE12BDB239C0000C836 /* HubActionMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,10 @@
 		353F13812BDE59D600D4847C /* PortInputFormatSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortInputFormatSingle.swift; sourceTree = "<group>"; };
 		353F13832BDE5A8900D4847C /* PortValueSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortValueSingle.swift; sourceTree = "<group>"; };
 		3548481A2BDEC1B200AFF857 /* SensorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMode.swift; sourceTree = "<group>"; };
+		3548481C2BDED28500AFF857 /* MotorAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorAngle.swift; sourceTree = "<group>"; };
+		3548481E2BDED74600AFF857 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
+		354848202BDED81400AFF857 /* EndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndState.swift; sourceTree = "<group>"; };
+		354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortOutputCommandFeedback.swift; sourceTree = "<group>"; };
 		359BFEE12BDB239C0000C836 /* HubActionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubActionMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +166,7 @@
 				3531B0E52BD87059003FFBB4 /* BytesWriter.swift */,
 				3531B0EB2BDA8763003FFBB4 /* Decoder.swift */,
 				3531B0DF2BD86FA3003FFBB4 /* Encoder.swift */,
+				3548481E2BDED74600AFF857 /* MathUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -167,10 +176,12 @@
 			children = (
 				3531B0DB2BD86FA2003FFBB4 /* Message.swift */,
 				3531B0E92BD9413C003FFBB4 /* MotorPower.swift */,
+				3548481C2BDED28500AFF857 /* MotorAngle.swift */,
 				3531B0D52BD86F45003FFBB4 /* PortInformationFormatSetup.swift */,
 				353F13812BDE59D600D4847C /* PortInputFormatSingle.swift */,
 				3531B0DD2BD86FA2003FFBB4 /* PortInformationMessage.swift */,
 				3531B0DC2BD86FA2003FFBB4 /* PortOutputCommand.swift */,
+				354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */,
 				353F13832BDE5A8900D4847C /* PortValueSingle.swift */,
 				3531B0ED2BDA8817003FFBB4 /* HubPropertyMessage.swift */,
 				3531B0EF2BDA88F0003FFBB4 /* HubAttachedIO.swift */,
@@ -185,6 +196,7 @@
 				3531B0CA2BD4EE4B003FFBB4 /* Gatt.swift */,
 				3531B0DE2BD86FA3003FFBB4 /* Port.swift */,
 				3548481A2BDEC1B200AFF857 /* SensorMode.swift */,
+				354848202BDED81400AFF857 /* EndState.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -269,8 +281,12 @@
 				3531B0D62BD86F45003FFBB4 /* PortInformationFormatSetup.swift in Sources */,
 				3531B0E32BD86FA3003FFBB4 /* Port.swift in Sources */,
 				3531B0E22BD86FA3003FFBB4 /* PortInformationMessage.swift in Sources */,
+				354848232BDEDE9500AFF857 /* PortOutputCommandFeedback.swift in Sources */,
+				354848212BDED81400AFF857 /* EndState.swift in Sources */,
 				3531B0BC2BD4EE14003FFBB4 /* ContentView.swift in Sources */,
 				3531B0EE2BDA8817003FFBB4 /* HubPropertyMessage.swift in Sources */,
+				3548481D2BDED28500AFF857 /* MotorAngle.swift in Sources */,
+				3548481F2BDED74600AFF857 /* MathUtil.swift in Sources */,
 				353F13842BDE5A8900D4847C /* PortValueSingle.swift in Sources */,
 				3531B0CD2BD4EEB7003FFBB4 /* CentralController.swift in Sources */,
 				3531B0D02BD4EFE0003FFBB4 /* ScanView.swift in Sources */,

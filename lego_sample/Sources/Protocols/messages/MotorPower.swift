@@ -8,9 +8,18 @@
 import Foundation
 
 struct MotorPower: OutputMessage {
-    let power: Int8
     let port: Port
+    let power: Int8
     let messageType: MessageType = MessageType.portOutputCommand
+    
+    init(port: Port, power: Int8) {
+        self.port = port
+        self.power = power
+    }
+    init(port: Port, forBrake: Void) {
+        self.port = port
+        self.power = 127
+    }
     
     func write(writer: BytesWriter) {
         writer.writePort(port)

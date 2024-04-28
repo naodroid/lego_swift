@@ -74,7 +74,7 @@ class Decoder {
         case .portOutputCommand:
             return nil
         case .portOutputCommandFeedback:
-            return nil
+            return PortOutputCommandFeedback.create(reader: reader)
         }
     }
 }

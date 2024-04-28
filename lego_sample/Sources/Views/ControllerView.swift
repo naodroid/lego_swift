@@ -22,9 +22,13 @@ struct ControllerView: View {
         self._carController = State(initialValue: ctrl)
     }
     var body: some View {
-        VStack {
+        HStack {
             if carController.deviceStatus.isReady {
-                controlView
+                Spacer()
+                SteerView()
+                Spacer()
+                PowerView()
+                Spacer()
             } else {
                 Text("Connecting...")
             }
@@ -35,23 +39,66 @@ struct ControllerView: View {
         .onDisappear {
             carController.disconnect()
         }
+        .environment(carController)
     }
-    @ViewBuilder
-    var controlView: some View {
-        Button {
-            speed += 10
-            carController.setFrontPower(power: speed)
-            carController.setRearPower(power: speed)
-        } label: {
-            Text("UP")
-        }
-        Text("\(speed)")
-        Button {
-            speed -= 10
-            carController.setFrontPower(power: speed)
-            carController.setRearPower(power: speed)
-        } label: {
-            Text("DOWN")
-        }
+}
+
+struct PowerView: View {
+    @Environment(CarController.self) var carController
+    @State var power = 0
+    
+    var body: some View {
+        VStack {
+            Button {
+                power += 10
+                carController.setPower(power)
+            } label: {
+                Text("UP")
+            }
+            Text("\(power)")
+            Button {
+                power -= 10
+                carController.setPower(power)
+            } label: {
+                Text("DOWN")
+            }
+            Spacer().frame(height: 8)
+            Button {
+                power = 0
+                carController.setPower(power)
+            } label: {
+                Text("BRAKE")
+            }
+        }.font(.title)
+    }
+}
+struct SteerView: View {
+    @Environment(CarController.self) var carController
+    @State var steer = 0
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    steer += 10
+                    carController.setAngle(steer)
+                } label: {
+                    Text("L")
+                }
+                Button {
+                    steer -= 10
+                    carController.setAngle(steer)
+                } label: {
+                    Text("R")
+                }
+            }
+            Text("\(steer)")
+            Button {
+                steer = 0
+                carController.setAngle(steer)
+            } label: {
+                Text("CENTER")
+            }
+        }.font(.title)
     }
 }

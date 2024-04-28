@@ -111,17 +111,31 @@ class CarController: NSObject {
         let data = Encoder.encode(message: message)
         target.writeValue(data, for: ch, type: requireResponse ? .withResponse : .withoutResponse)
     }
-    func setFrontPower(power: Int) {
+    func setPower(_ power: Int) {
+        setFrontPower(power)
+        setRearPower(power)
+    }
+    func setFrontPower(_ power: Int) {
         let v = max(min(power, 100), -100)
-        let msg = MotorPower(power: Int8(v), port: .a)
+        let msg = MotorPower(port: .a, power: Int8(v))
         send(message: msg)
     }
-    func setRearPower(power: Int) {
+    func setRearPower(_ power: Int) {
         let v = max(min(power, 100), -100)
-        let msg = MotorPower(power: Int8(v), port: .b)
+        let msg = MotorPower(port: .b, power: Int8(v))
         send(message: msg)
     }
-
+    func brake() {
+        let front = MotorPower(port: .a, forBrake: ())
+        let rear = MotorPower(port: .b, forBrake: ())
+        send(message: front)
+        send(message: rear)
+    }
+    
+    func setAngle(_ angle: Int) {
+        let msg = MotorAngle(port: .d, angle: Int32(angle))
+        send(message: msg)
+    }
     
     
     // MARK: State Managment
@@ -157,15 +171,10 @@ extension CarController: CBPeripheralDelegate {
         }
         if let msg = Decoder.decode(data) {
             onMessageReceived(msg)
-        } else {
-            print("FAILED TO PARSE:\(data)")
         }
     }
     
-    
-    
     func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
-        print("READY!")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -187,6 +196,7 @@ extension CarController: CBPeripheralDelegate {
 }
 extension CarController {
     private func onMessageReceived(_ msg: Message) {
+        print("MSG:\(msg.messageType)")
         switch msg.messageType {
         case .hubAttachedIO:
             onHubAttachedIOReceived(msg)
@@ -227,17 +237,19 @@ extension CarController {
             switch msg.port {
             case Port.a, Port.b:
                 //front & rear power motor
-                let msg = PortInformationFormatSetup(port: msg.port,
-                                                     sensorMode: SensorMode.LargeMotor.speed.rawValue,
-                                                     deltaInterval: 1000,
-                                                     enabled: true)
+                let msg = PortInformationFormatSetup(
+                    port: msg.port,
+                    sensorMode: SensorMode.LargeMotor.speed.rawValue,
+                    deltaInterval: 1000,
+                    enabled: false)
                 send(message: msg)
             case Port.d:
                 //front steer motor
-                let msg = PortInformationFormatSetup(port: msg.port,
-                                                     sensorMode: SensorMode.LargeMotor.position.rawValue,
-                                                     deltaInterval: 1000,
-                                                     enabled: true)
+                let msg = PortInformationFormatSetup(
+                    port: msg.port,
+                    sensorMode: SensorMode.LargeMotor.absolutePosition.rawValue,
+                    deltaInterval: 1000,
+                    enabled: true)
                 send(message: msg)
             default:
                 print("UNKNOWN PORT")
