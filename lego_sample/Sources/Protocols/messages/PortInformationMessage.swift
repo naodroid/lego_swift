@@ -8,6 +8,7 @@
 import Foundation
 
 enum PortInformationMode: UInt8 {
+    case name = 0
     case raw = 1
     case pct = 2
     case si = 3

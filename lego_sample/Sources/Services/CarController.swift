@@ -44,7 +44,10 @@ class CarController: NSObject {
     let target: CBPeripheral
     weak var centralController: CentralController?
     
-    public private(set) var deviceStatus: DeviceStatus = .disconnected
+    private(set) var deviceStatus: DeviceStatus = .disconnected
+    private(set) var speed: Float = 0
+    private(set) var angle: Float = 0
+    
     @ObservationIgnored private var stateObserver: NSKeyValueObservation?
     @ObservationIgnored private var characteristic: CBCharacteristic?
     @ObservationIgnored private var attachedDevices: [Port: HubAttachedIO] = [:]
@@ -88,6 +91,11 @@ class CarController: NSObject {
     func disconnect() {
         Task {
             do {
+                //power off the hub
+                send(message: HubActionMessage(actionType: .switchOffHub))
+                //wait until completed sending
+                //TODO: use delegate to detect compeltion
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
                 try await centralController?.disconnect(peripheral: target)
             } catch {
                 print("FAILED TO DISCONNECT: \(error)")
@@ -102,12 +110,6 @@ class CarController: NSObject {
         }
         let data = Encoder.encode(message: message)
         target.writeValue(data, for: ch, type: requireResponse ? .withResponse : .withoutResponse)
-    }
-    func setupFormat() {
-        let format = PortInformationFormatSetup(port: Port.a,
-                                                deltaInterval: 100,
-                                                enabled: true)
-        send(message: format)
     }
     func setFrontPower(power: Int) {
         let v = max(min(power, 100), -100)
@@ -139,8 +141,6 @@ class CarController: NSObject {
     private func onFoundCharacteristic(service: CBService, characteristic: CBCharacteristic) {
         self.deviceStatus = .ready(service: service, charateristic: characteristic)
         target.setNotifyValue(true, for: characteristic)
-        print("SETUP_FORMAT")
-        setupFormat()
     }
     
     private func onDisconnected() {
@@ -156,54 +156,7 @@ extension CarController: CBPeripheralDelegate {
             return
         }
         if let msg = Decoder.decode(data) {
-            switch msg.messageType {
-            case .hubProperties:
-                break
-            case .hubActions:
-                break
-            case .hubAlerts:
-                break
-            case .hubAttachedIO:
-                onHubAttachedIOReceived(msg)
-            case .genericErrorMessages:
-                break
-            case .hwNetWorkCommands:
-                break
-            case .fwUpdateGoIntoBooMode:
-                break
-            case .fwUpdateLockMemory:
-                break
-            case .fwUpdateLockStatusRequest:
-                break
-            case .fwLockStatus:
-                break
-            case .portInformationRequest:
-                break
-            case .portModeInformationRequest:
-                break
-            case .portInputFormatSetupSingle:
-                break
-            case .portInputFormatSetupCombinedMode:
-                break
-            case .portInformation:
-                break
-            case .portModeInformation:
-                break
-            case .portValueSingle:
-                break
-            case .portValueCombinedMode:
-                break
-            case .portInputFormatSingle:
-                break
-            case .portInputFormatCombinedMode:
-                break
-            case .virtualPortSetup:
-                break
-            case .portOutputCommand:
-                break
-            case .portOutputCommandFeedback:
-                break
-            }
+            onMessageReceived(msg)
         } else {
             print("FAILED TO PARSE:\(data)")
         }
@@ -233,6 +186,35 @@ extension CarController: CBPeripheralDelegate {
     }
 }
 extension CarController {
+    private func onMessageReceived(_ msg: Message) {
+        switch msg.messageType {
+        case .hubAttachedIO:
+            onHubAttachedIOReceived(msg)
+        case .genericErrorMessages:
+            print("ERROR!\(msg)")
+        case .hubProperties, .hubActions, .hubAlerts:
+            break
+        case .hwNetWorkCommands, .fwUpdateGoIntoBooMode:
+            break
+        case .fwUpdateLockMemory, .fwUpdateLockStatusRequest, .fwLockStatus:
+            break
+        case .portInformationRequest, .portModeInformationRequest:
+            break
+        case .portInputFormatSetupSingle, .portInputFormatSetupCombinedMode:
+            break
+        case .portInformation, .portModeInformation:
+            break
+        case .portValueSingle:
+            break
+        case .portValueCombinedMode:
+            break
+        case .portInputFormatSingle, .portInputFormatCombinedMode:
+            break
+        case .virtualPortSetup, .portOutputCommand, .portOutputCommandFeedback:
+            break
+        }
+
+    }
     private func onHubAttachedIOReceived(_ msg: Message) {
         guard let msg = msg as? HubAttachedIO else {
             return
@@ -242,6 +224,24 @@ extension CarController {
             attachedDevices[msg.port] = nil
         case .attachedIO, .attachedVirtualIO:
             attachedDevices[msg.port] = msg
+            switch msg.port {
+            case Port.a, Port.b:
+                //front & rear power motor
+                let msg = PortInformationFormatSetup(port: msg.port,
+                                                     sensorMode: SensorMode.LargeMotor.speed.rawValue,
+                                                     deltaInterval: 1000,
+                                                     enabled: true)
+                send(message: msg)
+            case Port.d:
+                //front steer motor
+                let msg = PortInformationFormatSetup(port: msg.port,
+                                                     sensorMode: SensorMode.LargeMotor.position.rawValue,
+                                                     deltaInterval: 1000,
+                                                     enabled: true)
+                send(message: msg)
+            default:
+                print("UNKNOWN PORT")
+            }
         }
     }
 }

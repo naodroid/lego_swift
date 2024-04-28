@@ -32,7 +32,7 @@ class Decoder {
         case .hubProperties:
             return nil
         case .hubActions:
-            return nil
+            return HubActionMessage.create(reader: reader)
         case .hubAlerts:
             return nil
         case .hubAttachedIO:
@@ -62,11 +62,11 @@ class Decoder {
         case .portModeInformation:
             return nil
         case .portValueSingle:
-            return nil
+            return PortValueSingle.create(reader: reader)
         case .portValueCombinedMode:
             return nil
         case .portInputFormatSingle:
-            return nil
+            return PortInputFormatSingle.create(reader: reader)
         case .portInputFormatCombinedMode:
             return nil
         case .virtualPortSetup:

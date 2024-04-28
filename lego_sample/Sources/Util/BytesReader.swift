@@ -40,6 +40,13 @@ class BytesReader {
         let b4 = Int32(bytes[pos + 3] & 0xFF)
         return (b4 << 24) | (b3 << 16) | (b2 << 8) | b1
     }
+    func readUInt32() -> UInt32 {
+        let b1 = UInt32(bytes[pos] & 0xFF)
+        let b2 = UInt32(bytes[pos + 1] & 0xFF)
+        let b3 = UInt32(bytes[pos + 2] & 0xFF)
+        let b4 = UInt32(bytes[pos + 3] & 0xFF)
+        return (b4 << 24) | (b3 << 16) | (b2 << 8) | b1
+    }
     func readPort() -> Port {
         let id = readUInt8()
         return Port(id: id)
