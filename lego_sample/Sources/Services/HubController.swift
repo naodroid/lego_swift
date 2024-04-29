@@ -39,7 +39,8 @@ enum DeviceStatus: Equatable {
 
 protocol HubDelegate: AnyObject {
     func onDeviceStateChanged(_ status: DeviceStatus)
-    func onHubAttachedIOReceived(_ msg: Message)
+    func onPortValueReceived(_ msg: PortValueSingle)
+    func onHubAttachedIOReceived(_ msg: HubAttachedIO)
 }
 
 class HubController: NSObject {
@@ -192,7 +193,8 @@ extension HubController {
         print("MSG:\(msg.messageType)")
         switch msg.messageType {
         case .hubAttachedIO:
-            self.hubDelegate?.onHubAttachedIOReceived(msg)
+            let m = msg as! HubAttachedIO
+            self.hubDelegate?.onHubAttachedIOReceived(m)
         case .genericErrorMessages:
             print("ERROR!\(msg)")
         case .hubProperties, .hubActions, .hubAlerts:
@@ -208,7 +210,9 @@ extension HubController {
         case .portInformation, .portModeInformation:
             break
         case .portValueSingle:
-            break
+            print("VAL:PORT")
+            let value = msg as! PortValueSingle
+            hubDelegate?.onPortValueReceived(value)
         case .portValueCombinedMode:
             break
         case .portInputFormatSingle, .portInputFormatCombinedMode:

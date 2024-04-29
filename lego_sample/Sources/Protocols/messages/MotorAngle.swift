@@ -19,7 +19,7 @@ struct MotorAngle: OutputMessage {
          angle: Int32,
          maxSpeed: Int8 = 100,
          maxPower: Int8 = 100,
-         endState: EndState = .float) {
+         endState: EndState = .hold) {
         self.port = port
         self.angle = angle
         self.maxSpeed = maxSpeed

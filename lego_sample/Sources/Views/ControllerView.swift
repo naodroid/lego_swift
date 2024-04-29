@@ -24,7 +24,7 @@ struct ControllerView: View {
     }
     var body: some View {
         HStack {
-            if carController.deviceStatus.isReady {
+            if carController.carStatus == .ready {
                 TwoStickView()
             } else {
                 Text("Connecting...")
@@ -61,7 +61,7 @@ struct TwoStickView: View {
         HStack {
             Spacer()
             HStickView { v in
-                carController.setAngle(-v)
+                carController.setAngle(v)
             }
             Spacer().frame(width: 40)
             VStickView { v in
