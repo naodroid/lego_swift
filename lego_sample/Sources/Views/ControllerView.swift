@@ -25,7 +25,14 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             if carController.carStatus == .ready {
-                TwoStickView()
+                VStack {
+                    SpeedGraph(
+                        data: carController.speedHistories
+                    )
+                    .frame(width: 200, height: 200)
+
+                    TwoStickView()
+                }
             } else {
                 Text("Connecting...")
             }
@@ -55,9 +62,6 @@ struct TwoStickView: View {
     @Environment(CarController.self) var carController
     
     var body: some View {
-        var braking = false
-        var lastSpeed = 0
-        
         HStack {
             Spacer()
             HStickView { v in

@@ -17,12 +17,37 @@ enum CarStatus: Equatable {
     case calibrating
     case ready
 }
+struct SpeedData: Identifiable {
+    var id: Int
+    var time: Int //timeinterval * 1000
+    var speed: Int
+    init(time: TimeInterval, speed: Int) {
+        self.id = Int(time * 1000)
+        self.time = self.id
+        self.speed = speed
+    }
+}
+
+
+private func createInitialData() -> [SpeedData] {
+    let count = TimeInterval(CarController.keepDurationInMSec) / 30
+    let delta = TimeInterval(CarController.keepDurationInMSec) / count
+    let current = CACurrentMediaTime()
+    var time = current - TimeInterval(CarController.keepDurationInMSec)
+    var ret: [SpeedData] = []
+    while time < current {
+        ret.append(SpeedData(time: time, speed: 0))
+        time += 0.1
+    }
+    return ret
+}
 
 @Observable
 class CarController: NSObject {
     let hubController: HubController
+    static let keepDurationInMSec = 5 * 1000
     
-    private(set) var speed: Int = 0
+    private(set) var speedHistories: [SpeedData] = createInitialData()
     private(set) var angle: Int = 0
     private(set) var carStatus: CarStatus = .disconnected
     
@@ -100,7 +125,7 @@ extension CarController: HubDelegate {
                 let msg = PortInformationFormatSetup(
                     port: msg.port,
                     sensorMode: SensorMode.LargeMotor.speed.rawValue,
-                    deltaInterval: 100,
+                    deltaInterval: 0,
                     enabled: msg.port == Port.a)
                 hubController.send(message: msg)
             case Port.d:
@@ -108,7 +133,7 @@ extension CarController: HubDelegate {
                 let msg = PortInformationFormatSetup(
                     port: msg.port,
                     sensorMode: SensorMode.LargeMotor.position.rawValue,
-                    deltaInterval: 100, //it seems that this time doesn't work
+                    deltaInterval: 0, //it seems that this time doesn't work
                     enabled: true)
                 hubController.send(message: msg)
             default:
@@ -142,7 +167,11 @@ extension CarController: HubDelegate {
         switch msg.port {
         case .a:
             let spd = BytesReader(bytes: msg.value).readInt8()
-            self.speed = Int(spd)
+            let data = SpeedData(time: CACurrentMediaTime(), speed: Int(spd))
+            var graph = speedHistories
+            graph.append(data)
+            graph = graph.filter { $0.time >= data.time - CarController.keepDurationInMSec }
+            self.speedHistories = graph
         case .d:
             let angle = BytesReader(bytes: msg.value).readInt32()
             self.angle = Int(angle)
@@ -167,7 +196,10 @@ extension CarController: HubDelegate {
             setAngle(center)
             try? await Task.sleep(nanoseconds: waitNSec / 2)
             self.steeringRange = left...right
+            print(left)
+            print(right)
             self.carStatus = .ready
+            self.speedHistories = createInitialData()
         }
     }
 }

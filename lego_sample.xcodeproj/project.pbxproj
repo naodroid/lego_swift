@@ -39,6 +39,7 @@
 		354848252BDF022D00AFF857 /* HubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848242BDF022D00AFF857 /* HubController.swift */; };
 		354848272BDF11FA00AFF857 /* HStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848262BDF11FA00AFF857 /* HStickView.swift */; };
 		354848292BDF12EE00AFF857 /* VStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848282BDF12EE00AFF857 /* VStickView.swift */; };
+		3548482C2BDF360300AFF857 /* SpeedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548482B2BDF360300AFF857 /* SpeedGraph.swift */; };
 		359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BFEE12BDB239C0000C836 /* HubActionMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		354848242BDF022D00AFF857 /* HubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubController.swift; sourceTree = "<group>"; };
 		354848262BDF11FA00AFF857 /* HStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStickView.swift; sourceTree = "<group>"; };
 		354848282BDF12EE00AFF857 /* VStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStickView.swift; sourceTree = "<group>"; };
+		3548482B2BDF360300AFF857 /* SpeedGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraph.swift; sourceTree = "<group>"; };
 		359BFEE12BDB239C0000C836 /* HubActionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubActionMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				3531B0D32BD4F929003FFBB4 /* ControllerView.swift */,
 				354848262BDF11FA00AFF857 /* HStickView.swift */,
 				354848282BDF12EE00AFF857 /* VStickView.swift */,
+				3548482B2BDF360300AFF857 /* SpeedGraph.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				354848252BDF022D00AFF857 /* HubController.swift in Sources */,
 				3531B0D22BD4F91C003FFBB4 /* CarController.swift in Sources */,
 				3531B0E02BD86FA3003FFBB4 /* Message.swift in Sources */,
+				3548482C2BDF360300AFF857 /* SpeedGraph.swift in Sources */,
 				353F13822BDE59D600D4847C /* PortInputFormatSingle.swift in Sources */,
 				3531B0BA2BD4EE14003FFBB4 /* App.swift in Sources */,
 				3531B0D92BD86F99003FFBB4 /* BytesReader.swift in Sources */,

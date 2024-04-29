@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreBluetooth
+import Charts
 
 struct ScanView: View {
     @Environment(CentralController.self) var controller
@@ -33,4 +34,3 @@ struct ScanView: View {
         }
     }
 }
-
