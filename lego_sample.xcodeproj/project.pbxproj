@@ -37,6 +37,8 @@
 		354848212BDED81400AFF857 /* EndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848202BDED81400AFF857 /* EndState.swift */; };
 		354848232BDEDE9500AFF857 /* PortOutputCommandFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */; };
 		354848252BDF022D00AFF857 /* HubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848242BDF022D00AFF857 /* HubController.swift */; };
+		354848272BDF11FA00AFF857 /* HStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848262BDF11FA00AFF857 /* HStickView.swift */; };
+		354848292BDF12EE00AFF857 /* VStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848282BDF12EE00AFF857 /* VStickView.swift */; };
 		359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BFEE12BDB239C0000C836 /* HubActionMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,8 @@
 		354848202BDED81400AFF857 /* EndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndState.swift; sourceTree = "<group>"; };
 		354848222BDEDE9500AFF857 /* PortOutputCommandFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortOutputCommandFeedback.swift; sourceTree = "<group>"; };
 		354848242BDF022D00AFF857 /* HubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubController.swift; sourceTree = "<group>"; };
+		354848262BDF11FA00AFF857 /* HStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStickView.swift; sourceTree = "<group>"; };
+		354848282BDF12EE00AFF857 /* VStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStickView.swift; sourceTree = "<group>"; };
 		359BFEE12BDB239C0000C836 /* HubActionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubActionMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,8 @@
 			children = (
 				3531B0CF2BD4EFE0003FFBB4 /* ScanView.swift */,
 				3531B0D32BD4F929003FFBB4 /* ControllerView.swift */,
+				354848262BDF11FA00AFF857 /* HStickView.swift */,
+				354848282BDF12EE00AFF857 /* VStickView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354848292BDF12EE00AFF857 /* VStickView.swift in Sources */,
 				3548481B2BDEC1B200AFF857 /* SensorMode.swift in Sources */,
 				3531B0F02BDA88F0003FFBB4 /* HubAttachedIO.swift in Sources */,
 				3531B0EC2BDA8763003FFBB4 /* Decoder.swift in Sources */,
@@ -303,6 +310,7 @@
 				3531B0BA2BD4EE14003FFBB4 /* App.swift in Sources */,
 				3531B0D92BD86F99003FFBB4 /* BytesReader.swift in Sources */,
 				359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */,
+				354848272BDF11FA00AFF857 /* HStickView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

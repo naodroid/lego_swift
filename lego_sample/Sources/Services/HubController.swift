@@ -96,8 +96,7 @@ class HubController: NSObject {
     func disconnect() {
         Task {
             do {
-                //power off the hub
-                send(message: HubActionMessage(actionType: .switchOffHub))
+                send(message: HubActionMessage(actionType: .disconnect))
                 //wait until completed sending
                 //TODO: use delegate to detect compeltion
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
@@ -107,6 +106,20 @@ class HubController: NSObject {
             }
         }
     }
+    func powerOff() {
+        Task {
+            do {
+                //power off the hub
+                send(message: HubActionMessage(actionType: .shutdown))
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                //wait until completed sending
+                try await centralController?.disconnect(peripheral: target)
+            } catch {
+                print("FAILED TO DISCONNECT: \(error)")
+            }
+        }
+    }
+    
     // MARK: Sending
     func send(message: OutputMessage, requireResponse: Bool = false) {
         guard let ch = self.deviceStatus.characteristic else {

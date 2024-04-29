@@ -20,3 +20,13 @@ enum MathUtil {
         return angle
     }
 }
+
+extension Comparable {
+    func clamped(minValue: Self, maxValue: Self) -> Self {
+        min(max(minValue, self), maxValue)
+    }
+    
+    func clamped(to range: ClosedRange<Self>) -> Self {
+        self.clamped(minValue: range.lowerBound, maxValue: range.upperBound)
+    }
+}

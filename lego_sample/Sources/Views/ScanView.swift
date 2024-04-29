@@ -14,7 +14,7 @@ struct ScanView: View {
     @Binding var paths: [Path]
     
     var body: some View {
-        VStack {
+        HStack {
             List(controller.scanResults) { result in
                 Button {
                     let path = Path.carCntrol(result: result)
@@ -33,3 +33,4 @@ struct ScanView: View {
         }
     }
 }
+

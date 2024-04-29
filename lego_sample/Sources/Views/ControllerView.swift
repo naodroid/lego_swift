@@ -11,6 +11,7 @@ import CoreBluetooth
 
 struct ControllerView: View {
     @Binding var paths: [Path]
+    @Environment(\.dismiss) var dismiss
     @State var carController: CarController
     @State var speed = 0
     
@@ -24,15 +25,23 @@ struct ControllerView: View {
     var body: some View {
         HStack {
             if carController.deviceStatus.isReady {
-                Spacer()
-                SteerView()
-                Spacer()
-                PowerView()
-                Spacer()
+                TwoStickView()
             } else {
                 Text("Connecting...")
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    carController.powerOff()
+                    dismiss()
+                } label: {
+                    Text("Shutdown").foregroundStyle(.red)
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Control")
         .onAppear {
             carController.connect()
         }
@@ -42,63 +51,23 @@ struct ControllerView: View {
         .environment(carController)
     }
 }
-
-struct PowerView: View {
+struct TwoStickView: View {
     @Environment(CarController.self) var carController
-    @State var power = 0
     
     var body: some View {
-        VStack {
-            Button {
-                power += 10
-                carController.setPower(power)
-            } label: {
-                Text("UP")
+        var braking = false
+        var lastSpeed = 0
+        
+        HStack {
+            Spacer()
+            HStickView { v in
+                carController.setAngle(-v)
             }
-            Text("\(power)")
-            Button {
-                power -= 10
-                carController.setPower(power)
-            } label: {
-                Text("DOWN")
+            Spacer().frame(width: 40)
+            VStickView { v in
+                carController.setPower(-v)
             }
-            Spacer().frame(height: 8)
-            Button {
-                power = 0
-                carController.setPower(power)
-            } label: {
-                Text("BRAKE")
-            }
-        }.font(.title)
-    }
-}
-struct SteerView: View {
-    @Environment(CarController.self) var carController
-    @State var steer = 0
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    steer += 10
-                    carController.setAngle(steer)
-                } label: {
-                    Text("L")
-                }
-                Button {
-                    steer -= 10
-                    carController.setAngle(steer)
-                } label: {
-                    Text("R")
-                }
-            }
-            Text("\(steer)")
-            Button {
-                steer = 0
-                carController.setAngle(steer)
-            } label: {
-                Text("CENTER")
-            }
-        }.font(.title)
+            Spacer()
+        }
     }
 }

@@ -30,18 +30,13 @@ struct MotorAngle: OutputMessage {
     func write(writer: BytesWriter) {
         writer.writePort(port)
         writer.writeUInt8(0x11)
-//        writer.writeUInt8(0x51) //direct buffer
         writer.writeUInt8(0x0d)
         writer.writeInt32(angle)
         writer.writeInt8(maxSpeed)
         writer.writeInt8(maxPower)
         writer.writeInt8(endState.rawValue)
-        writer.writeUInt8(1) //use profile
-        let d = writer.output
-        let s = d.map { String(format: "%02x", $0) }.joined(separator: ",")
-        print(s)
+        writer.writeUInt8(0) //use profile
     }
-    //([0x81, this.portId, 0x11, 0x0d, 0x00, 0x00, 0x00, 0x00, mapSpeed(speed), this._maxPower, this._brakeStyle, this.useProfile()]);
 }
 
 

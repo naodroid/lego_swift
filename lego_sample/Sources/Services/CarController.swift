@@ -36,18 +36,18 @@ class CarController: NSObject {
     func disconnect() {
         hubController.disconnect()
     }
+    func powerOff() {
+        hubController.powerOff()
+    }
     // MARK: Sending
     func setPower(_ power: Int) {
         setFrontPower(power)
-        setRearPower(power)
+        let front = MotorPower(port: .a, power: Int8(v))
+        let rear = MotorPower(port: .b, power: Int8(v))
+        hubController.send(message: front)
     }
-    func setFrontPower(_ power: Int) {
-        let v = max(min(power, 100), -100)
-        let msg = MotorPower(port: .a, power: Int8(v))
-        hubController.send(message: msg)
-    }
-    func setRearPower(_ power: Int) {
-        let v = max(min(power, 100), -100)
+    private func setRearPower(_ power: Int) {
+        let v = power.clamped(to: -100...100)
         let msg = MotorPower(port: .b, power: Int8(v))
         hubController.send(message: msg)
     }
