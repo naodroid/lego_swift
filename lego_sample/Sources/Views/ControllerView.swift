@@ -32,6 +32,7 @@ struct ControllerView: View {
                     .frame(width: 200, height: 200)
 
                     TwoStickView()
+                    SpeedSelector()
                 }
             } else {
                 Text("Connecting...")
@@ -72,6 +73,26 @@ struct TwoStickView: View {
                 carController.setPower(-v)
             }
             Spacer()
+        }
+    }
+}
+struct SpeedSelector: View {
+    @Environment(CarController.self) var carController
+    
+    var body: some View {
+        VStack {
+            Text("Speed Selector")
+            HStack {
+                ForEach(-2..<3) { i in
+                    Button {
+                        carController.setSpeed(i * 30)
+                    } label: {
+                        Text("\(i)")
+                            .frame(width: 44, height: 44)
+                            .border(.blue)
+                    }
+                }
+            }
         }
     }
 }

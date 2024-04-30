@@ -89,6 +89,13 @@ class CarController: NSObject {
         hubController.send(message: front)
         hubController.send(message: rear)
     }
+    func setSpeed(_ speed: Int) {
+        let v = speed.clamped(to: -100...100)
+        let front = MotorSpeed(port: .a, speed: Int8(v))
+        let rear = MotorSpeed(port: .b, speed: Int8(v))
+        hubController.send(message: front)
+        hubController.send(message: rear)
+    }
     
     func setAngle(_ angle: Int) {
         var value = angle

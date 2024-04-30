@@ -40,6 +40,7 @@
 		354848272BDF11FA00AFF857 /* HStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848262BDF11FA00AFF857 /* HStickView.swift */; };
 		354848292BDF12EE00AFF857 /* VStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354848282BDF12EE00AFF857 /* VStickView.swift */; };
 		3548482C2BDF360300AFF857 /* SpeedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548482B2BDF360300AFF857 /* SpeedGraph.swift */; };
+		3548482E2BE1352800AFF857 /* MotorSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548482D2BE1352800AFF857 /* MotorSpeed.swift */; };
 		359BFEE22BDB239C0000C836 /* HubActionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BFEE12BDB239C0000C836 /* HubActionMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		354848262BDF11FA00AFF857 /* HStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStickView.swift; sourceTree = "<group>"; };
 		354848282BDF12EE00AFF857 /* VStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStickView.swift; sourceTree = "<group>"; };
 		3548482B2BDF360300AFF857 /* SpeedGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraph.swift; sourceTree = "<group>"; };
+		3548482D2BE1352800AFF857 /* MotorSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorSpeed.swift; sourceTree = "<group>"; };
 		359BFEE12BDB239C0000C836 /* HubActionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubActionMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,8 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				3531B0DB2BD86FA2003FFBB4 /* Message.swift */,
-				3531B0E92BD9413C003FFBB4 /* MotorPower.swift */,
 				3548481C2BDED28500AFF857 /* MotorAngle.swift */,
+				3531B0E92BD9413C003FFBB4 /* MotorPower.swift */,
+				3548482D2BE1352800AFF857 /* MotorSpeed.swift */,
 				3531B0D52BD86F45003FFBB4 /* PortInformationFormatSetup.swift */,
 				353F13812BDE59D600D4847C /* PortInputFormatSingle.swift */,
 				3531B0DD2BD86FA2003FFBB4 /* PortInformationMessage.swift */,
@@ -297,6 +300,7 @@
 				354848232BDEDE9500AFF857 /* PortOutputCommandFeedback.swift in Sources */,
 				354848212BDED81400AFF857 /* EndState.swift in Sources */,
 				3531B0BC2BD4EE14003FFBB4 /* ContentView.swift in Sources */,
+				3548482E2BE1352800AFF857 /* MotorSpeed.swift in Sources */,
 				3531B0EE2BDA8817003FFBB4 /* HubPropertyMessage.swift in Sources */,
 				3548481D2BDED28500AFF857 /* MotorAngle.swift in Sources */,
 				3548481F2BDED74600AFF857 /* MathUtil.swift in Sources */,
